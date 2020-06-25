@@ -68,13 +68,15 @@ void addMatrices(vector<vector<int>> a, vector<vector<int>> b)
 	}
 	else
 	{
-		cout << "Cannot add 2 grids of this size together, the # of rows and columsn in each must be the same" << endl;
+		cout << "Cannot add 2 grids of this size together, the # of rows and columns in each must be the same" << endl;
 	}
+	cout << endl;
 }
 
 void multiplyMatrices(vector<vector<int>> a, vector<vector<int>> b)
 {
-	if (a[0].size() == b.size())
+	int e = 0;
+	if (a.size() == b[0].size())
 	{
 		c.resize(a.size());
 		for (int i = 0; i < a.size(); i++)
@@ -83,20 +85,26 @@ void multiplyMatrices(vector<vector<int>> a, vector<vector<int>> b)
 		}
 
 		cout << "g1 * g2 is:" << endl;
-		for (int i = 0; i < num_rows; i++)
+		for (int i = 0; i < a.size(); i++)
 		{
-			for (int j = 0; j < num_columns; j++)
-			{
-				c[i][j] = a[i][j] * b[j][i];
+			for (int j = 0; j < b[0].size(); j++)
+			{				
+				for (int k = 0; k < a[0].size(); k++)
+				{
+					e += a[i][k] * b[k][j];
+				}
+				c[i][j] = e;
 				cout << c[i][j] << " ";
+				e = 0;
 			}
 			cout << endl;
 		}
 	}
 	else
 	{
-		cout << "Cannot add 2 grids of this size together, the # of rows and columsn in each must be the same" << endl;
+		cout << "Cannot multiply 2 grids of this size together, the # of rows in g1 must equal the number of columns in g2" << endl;
 	}
+	cout << endl;
 }
 
 int main()
